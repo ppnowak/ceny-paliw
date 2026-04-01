@@ -1,3 +1,20 @@
 [
-
+  {
+    "date": "2026-03-31",
+    "effectiveDate": "2026-04-01",
+    "pb95": 6.21,
+    "pb98": 6.81,
+    "on": 7.66,
+    "source": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-1-kwietnia",
+    "publishedAt": "2026-03-31"
+  },
+  {
+    "date": "2026-03-30",
+    "effectiveDate": "2026-03-31",
+    "pb95": 6.16,
+    "pb98": 6.76,
+    "on": 7.6,
+    "source": "https://www.gov.pl/web/energia/minister-energii-podal-pierwsza-maksymalna-cene-detaliczna-paliw-od-jutra-tansze-tankowanie",
+    "publishedAt": "2026-03-30"
+  }
 ]

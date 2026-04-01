@@ -4,5 +4,17 @@
     "title": "Obniżka VAT, obniżka akcyzy, wprowadzenie maksymalnej ceny paliw. Rada Ministrów przyjęła pakiet przepisów „Ceny Paliwa Niżej”",
     "parsedAt": "2026-04-01T10:45:09.620Z",
     "hasPrices": false
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-1-kwietnia",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 1 kwietnia",
+    "parsedAt": "2026-04-01T10:57:49.645Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/minister-energii-podal-pierwsza-maksymalna-cene-detaliczna-paliw-od-jutra-tansze-tankowanie",
+    "title": "Minister Energii podał pierwszą maksymalną cenę detaliczną paliw. Od jutra tańsze tankowanie",
+    "parsedAt": "2026-04-01T10:57:57.787Z",
+    "hasPrices": true
   }
 ]
