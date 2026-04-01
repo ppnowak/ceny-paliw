@@ -1,0 +1,17 @@
+{
+  "name": "ceny-paliw",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Maksymalne ceny detaliczne paliw w Polsce",
+  "scripts": {
+    "scrape": "node scripts/scrape.mjs",
+    "test": "node --test scripts/*.test.mjs tests/security.test.mjs",
+    "test:unit": "node --test scripts/*.test.mjs",
+    "test:security": "node --test tests/security.test.mjs",
+    "test:e2e": "npx playwright test",
+    "test:all": "node --test scripts/*.test.mjs tests/security.test.mjs && npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.0"
+  }
+}

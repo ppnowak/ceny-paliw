@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ceny paliw w Polsce — maksymalne ceny detaliczne</title>
+  <meta name="description" content="Aktualne maksymalne ceny detaliczne paliw w Polsce (PB95, PB98, ON) ogłaszane przez Ministra Energii. Dane aktualizowane automatycznie.">
+  <meta name="keywords" content="ceny paliw, paliwa Polska, benzyna 95, benzyna 98, olej napędowy, ceny detaliczne, Minister Energii">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Ceny paliw w Polsce — maksymalne ceny detaliczne">
+  <meta property="og:description" content="Maksymalne ceny detaliczne paliw ogłaszane przez Ministra Energii. PB95, PB98, ON.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000" id="themeColorMeta">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛽</text></svg>">
+</head>
+<body data-theme="auto">
+  <main id="app">
+    <header class="app-header">
+      <h1>Ceny paliw</h1>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Zmień motyw" title="Zmień motyw">
+          <svg class="theme-icon theme-icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon--dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="theme-icon theme-icon--auto" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 000 20z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </header>
+    <p class="subtitle">Maksymalne ceny detaliczne ogłaszane przez Ministra Energii</p>
+
+    <div class="carousel" id="carousel" role="region" aria-label="Karuzela cen paliw">
+      <button class="carousel-btn carousel-btn--prev" id="prevDay" aria-label="Poprzedni dzień">‹</button>
+      <div class="carousel-track" id="carouselTrack"></div>
+      <button class="carousel-btn carousel-btn--next" id="nextDay" aria-label="Następny dzień">›</button>
+    </div>
+
+    <button class="chart-toggle" id="chartToggle" aria-label="Pokaż wykres cen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+      </svg>
+      <span>Wykres cen</span>
+    </button>
+
+    <footer class="app-footer" id="appFooter">
+      <span id="lastUpdated"></span>
+      <span class="staleness-dot" id="stalenessDot" title=""></span>
+    </footer>
+  </main>
+
+  <!-- Chart Modal -->
+  <div class="modal-overlay" id="chartModal" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Historia cen paliw</h2>
+        <button class="modal-close" id="chartModalClose" aria-label="Zamknij">&times;</button>
+      </div>
+      <div class="modal-body">
+        <canvas id="priceChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>Ładowanie danych...</p>
+  </div>
+
+  <div class="error" id="error" hidden>
+    <p>Nie udało się załadować danych o cenach paliw.</p>
+    <button onclick="location.reload()">Spróbuj ponownie</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
