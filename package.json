@@ -13,5 +13,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.59.0"
+  },
+  "dependencies": {
+    "pdf-parse": "^2.4.5"
   }
 }

@@ -2,6 +2,10 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { PDFParse } = require('pdf-parse');
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
@@ -10,6 +14,8 @@ const PARSED_NEWS_FILE = join(DATA_DIR, 'parsed-news.json');
 const SITE_DIR = join(__dirname, '..', 'site');
 
 const NEWS_URL = 'https://www.gov.pl/web/energia/wiadomosci';
+const MONITOR_POLSKI_URL = 'https://monitorpolski.gov.pl/szukaj?sKey=year&title=energii&text=';
+const MONITOR_POLSKI_BASE = 'https://monitorpolski.gov.pl';
 const NVIDIA_API_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 
 /**
@@ -68,6 +74,98 @@ export function parseNewsListHtml(html) {
     seen.add(a.url);
     return true;
   });
+}
+
+/**
+ * Fetch Monitor Polski search results and extract fuel price articles with PDF links
+ */
+export async function fetchMonitorPolskiPage(url = MONITOR_POLSKI_URL) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch Monitor Polski page: ${response.status} ${response.statusText}`);
+  }
+  const html = await response.text();
+  return parseMonitorPolskiHtml(html);
+}
+
+/**
+ * Parse Monitor Polski HTML to extract articles with PDF links.
+ * Each row has: type cell, title cell (with link), PDF cell (with link to .pdf)
+ */
+export function parseMonitorPolskiHtml(html) {
+  const articles = [];
+
+  // Match table rows containing both a title link and a PDF link
+  const rowPattern = /<tr[^>]*>([\s\S]*?)<\/tr>/g;
+  let match;
+
+  while ((match = rowPattern.exec(html)) !== null) {
+    const row = match[1];
+
+    // Extract title from the second <td> — the link text inside <td align="left">
+    const titleMatch = row.match(/<td[^>]*align="left"[^>]*>[\s\S]*?<a[^>]*>([^<]+)<\/a>/i);
+    if (!titleMatch) continue;
+
+    const title = titleMatch[1]
+      .replace(/&#322;/g, 'ł')
+      .replace(/&#243;/g, 'ó')
+      .replace(/&#261;/g, 'ą')
+      .replace(/&#281;/g, 'ę')
+      .replace(/&#263;/g, 'ć')
+      .replace(/&#324;/g, 'ń')
+      .replace(/&#347;/g, 'ś')
+      .replace(/&#378;/g, 'ź')
+      .replace(/&#380;/g, 'ż')
+      .replace(/&amp;/g, '&')
+      .trim();
+
+    // Extract PDF link
+    const pdfMatch = row.match(/href="(\/[^"]+\.pdf)"/i);
+    if (!pdfMatch) continue;
+
+    const pdfUrl = `${MONITOR_POLSKI_BASE}${pdfMatch[1]}`;
+
+    // Only interested in fuel price announcements
+    if (isMonitorPolskiFuelArticle(title)) {
+      articles.push({ title, pdfUrl, url: pdfUrl });
+    }
+  }
+
+  // Deduplicate by PDF URL
+  const seen = new Set();
+  return articles.filter(a => {
+    if (seen.has(a.pdfUrl)) return false;
+    seen.add(a.pdfUrl);
+    return true;
+  });
+}
+
+/**
+ * Check if a Monitor Polski title is about fuel prices
+ */
+export function isMonitorPolskiFuelArticle(title) {
+  const lower = title.toLowerCase();
+  return (
+    lower.includes('maksymaln') &&
+    lower.includes('cen') &&
+    lower.includes('paliw') &&
+    lower.includes('stacji')
+  );
+}
+
+/**
+ * Download a PDF and extract its text content
+ */
+export async function fetchPdfText(pdfUrl) {
+  const response = await fetch(pdfUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch PDF ${pdfUrl}: ${response.status}`);
+  }
+  const buffer = Buffer.from(await response.arrayBuffer());
+  const parser = new PDFParse({ data: buffer });
+  const result = await parser.getText();
+  await parser.destroy();
+  return result.text || '';
 }
 
 /**
@@ -192,15 +290,23 @@ export async function extractPricesWithAI(articleText, article, apiKey) {
     throw new Error('NVIDIA_API_KEY is required');
   }
 
-  const prompt = `Analyze the article below and extract the prices of PB95, PB98, and ON fuels.
+  const prompt = `# Rules
 
-Article:
+Analyze the article below and extract the prices of PB95, PB98, and ON fuels.
+- if the article URL is monitorpolski.gov.pl - shift effective date by +1 day. Effective date will be found in the title only
+- if the article source is gov.pl/web/energia, the effective date is likely mentioned specifically in the article text.
+
+# Article
 \`\`\`text
-${article.title}
+URL: ${article.url}
 
+Title: ${article.title}
+
+Contents:
 ${articleText}
 \`\`\`
 
+# Output
 Return only a JSON object strictly in the format below:
 {
   "pb95": <number, i.e. 6.21>,
@@ -389,9 +495,24 @@ export async function main() {
 
   console.log(`Found ${prices.length} existing prices, ${parsedNews.length} parsed news`);
 
-  console.log('Fetching news page...');
-  const articles = await fetchNewsPage();
-  console.log(`Found ${articles.length} fuel price articles`);
+  // Try Monitor Polski (PDF source) first, fall back to gov.pl
+  let articles = [];
+  let useMonitorPolski = false;
+
+  try {
+    console.log('Fetching Monitor Polski page (primary source)...');
+    articles = await fetchMonitorPolskiPage();
+    console.log(`Found ${articles.length} fuel price articles on Monitor Polski`);
+    useMonitorPolski = articles.length > 0;
+  } catch (error) {
+    console.warn(`Monitor Polski fetch failed: ${error.message}`);
+  }
+
+  if (!useMonitorPolski) {
+    console.log('Falling back to gov.pl news page...');
+    articles = await fetchNewsPage();
+    console.log(`Found ${articles.length} fuel price articles on gov.pl`);
+  }
 
   const newArticles = articles.filter(a => !parsedUrls.has(a.url));
   console.log(`${newArticles.length} new articles to process`);
@@ -406,8 +527,15 @@ export async function main() {
     console.log(`URL: ${article.url}`);
 
     try {
-      const text = await fetchArticleContent(article.url);
-      console.log(`Article text length: ${text.length}`);
+      let text;
+      if (useMonitorPolski && article.pdfUrl) {
+        console.log(`Downloading PDF: ${article.pdfUrl}`);
+        text = await fetchPdfText(article.pdfUrl);
+        console.log(`PDF text length: ${text.length}`);
+      } else {
+        text = await fetchArticleContent(article.url);
+        console.log(`Article text length: ${text.length}`);
+      }
 
       const priceData = await extractPricesWithAI(text, article, apiKey);
 

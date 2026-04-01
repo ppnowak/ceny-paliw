@@ -12,6 +12,8 @@ import {
   loadData,
   saveData,
   generateSiteData,
+  parseMonitorPolskiHtml,
+  isMonitorPolskiFuelArticle,
 } from './scrape.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -86,10 +88,10 @@ describe('extractArticleText', () => {
     assert.ok(text.includes('Cena & podatek > 5'));
   });
 
-  it('should truncate to 3000 chars', () => {
-    const html = '<p>' + 'A'.repeat(5000) + '</p>';
+  it('should truncate to 10000 chars', () => {
+    const html = '<p>' + 'A'.repeat(15000) + '</p>';
     const text = extractArticleText(html);
-    assert.ok(text.length <= 3000);
+    assert.ok(text.length <= 10000);
   });
 });
 
@@ -388,5 +390,68 @@ describe('pickConsensus', () => {
     ];
     const consensus = pickConsensus(results);
     assert.equal(consensus.effectiveDate, '2026-04-01');
+  });
+});
+
+describe('isMonitorPolskiFuelArticle', () => {
+  it('should match fuel price articles from Monitor Polski', () => {
+    assert.ok(isMonitorPolskiFuelArticle('Obwieszczenie Ministra Energii z dnia 1 kwietnia 2026 r. w sprawie maksymalnej ceny paliw ciek\u0142ych na stacji paliw'));
+    assert.ok(isMonitorPolskiFuelArticle('Obwieszczenie Ministra Energii z dnia 31 marca 2026 r. w sprawie maksymalnej ceny paliw ciek\u0142ych na stacji paliw'));
+  });
+
+  it('should not match unrelated articles', () => {
+    assert.ok(!isMonitorPolskiFuelArticle('Obwieszczenie Ministra Energii z dnia 19 stycznia 2026 r. w sprawie przeci\u0119tnej \u015bredniorocznej ceny zbytu 1 Mg w\u0119gla kamiennego'));
+    assert.ok(!isMonitorPolskiFuelArticle('Obwieszczenie Ministra Klimatu i \u015arodowiska z dnia 21 stycznia 2026 r. w sprawie \u015bredniego udzia\u0142u energii elektrycznej'));
+    assert.ok(!isMonitorPolskiFuelArticle('Rozporz\u0105dzenie Ministra Energii z dnia 12 lutego 2026 r. w sprawie sposobu pobierania pr\u00f3bek paliw ciek\u0142ych'));
+  });
+});
+
+describe('parseMonitorPolskiHtml', () => {
+  const makeRow = (type, title, pdfFile) => `
+    <tr>
+      <td align="right" class="numberAlign"><a href="/MP/rok/2026/pozycja/348">${type}</a></td>
+      <td align="left"><a href="/MP/rok/2026/pozycja/348">${title}</a></td>
+      <td><a href="/${pdfFile}"><img src="/static/images/file_pdf_s.png" title="Pobierz dokument ${pdfFile}" alt="Pobierz dokument ${pdfFile}"/></a></td>
+    </tr>`;
+
+  it('should extract fuel price articles with PDF links', () => {
+    const html = makeRow('Obwieszczenie', 'Obwieszczenie Ministra Energii z dnia 1 kwietnia 2026 r. w sprawie maksymalnej ceny paliw ciek&#322;ych na stacji paliw', 'M2026000034801.pdf')
+      + makeRow('Rozporz&#261;dzenie', 'Rozporz&#261;dzenie Ministra Energii w sprawie pr\u00f3bek paliw ciek&#322;ych', 'D2026000021701.pdf');
+    const articles = parseMonitorPolskiHtml(html);
+    assert.equal(articles.length, 1);
+    assert.ok(articles[0].title.includes('maksymalnej ceny paliw'));
+    assert.equal(articles[0].pdfUrl, 'https://monitorpolski.gov.pl/M2026000034801.pdf');
+  });
+
+  it('should extract multiple fuel price articles', () => {
+    const html = makeRow('Obwieszczenie', 'Obwieszczenie Ministra Energii z dnia 1 kwietnia 2026 r. w sprawie maksymalnej ceny paliw ciek&#322;ych na stacji paliw', 'M2026000034801.pdf')
+      + makeRow('Obwieszczenie', 'Obwieszczenie Ministra Energii z dnia 31 marca 2026 r. w sprawie maksymalnej ceny paliw ciek&#322;ych na stacji paliw', 'M2026000034401.pdf');
+    const articles = parseMonitorPolskiHtml(html);
+    assert.equal(articles.length, 2);
+  });
+
+  it('should deduplicate by PDF URL', () => {
+    const html = makeRow('Obwieszczenie', 'Obwieszczenie Ministra Energii z dnia 1 kwietnia 2026 r. w sprawie maksymalnej ceny paliw ciek&#322;ych na stacji paliw', 'M2026000034801.pdf')
+      + makeRow('Obwieszczenie', 'Obwieszczenie Ministra Energii z dnia 1 kwietnia 2026 r. w sprawie maksymalnej ceny paliw ciek&#322;ych na stacji paliw', 'M2026000034801.pdf');
+    const articles = parseMonitorPolskiHtml(html);
+    assert.equal(articles.length, 1);
+  });
+
+  it('should handle empty HTML', () => {
+    const articles = parseMonitorPolskiHtml('');
+    assert.equal(articles.length, 0);
+  });
+
+  it('should handle rows without PDF links', () => {
+    const html = `<tr><td align="right"><a href="/MP/rok/2026/pozycja/1">Obwieszczenie</a></td><td align="left"><a href="/MP/rok/2026/pozycja/1">Obwieszczenie Ministra Energii w sprawie maksymalnej ceny paliw ciek\u0142ych na stacji paliw</a></td><td></td></tr>`;
+    const articles = parseMonitorPolskiHtml(html);
+    assert.equal(articles.length, 0);
+  });
+
+  it('should decode HTML entities in titles', () => {
+    const html = makeRow('Obwieszczenie', 'Obwieszczenie w sprawie maksymalnej ceny paliw ciek&#322;ych na stacji paliw', 'M2026000034801.pdf');
+    const articles = parseMonitorPolskiHtml(html);
+    assert.equal(articles.length, 1);
+    assert.ok(articles[0].title.includes('ciek\u0142ych'));
   });
 });
