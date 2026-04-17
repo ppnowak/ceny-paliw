@@ -295,6 +295,7 @@ export async function extractPricesWithAI(articleText, article, apiKey) {
 Analyze the article below and extract the prices of PB95, PB98, and ON fuels.
 - if the article URL is monitorpolski.gov.pl - shift effective date by +1 day. Effective date will be found in the title only
 - if the article source is gov.pl/web/energia, the effective date is likely mentioned specifically in the article text.
+- if the article contains multiple prices, make sure to use the one with the tax included (i.e. "powiększona o podatek od towarów i usług wynosi")
 
 # Article
 \`\`\`text
