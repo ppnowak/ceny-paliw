@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-04-23",
+    "effectiveDate": "2026-04-24",
+    "pb95": 6.03,
+    "pb98": 6.62,
+    "on": 6.79,
+    "source": "https://monitorpolski.gov.pl/M2026000040901.pdf",
+    "publishedAt": "2026-04-23"
+  },
+  {
     "date": "2026-04-22",
     "effectiveDate": "2026-04-23",
     "pb95": 6.21,
