@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-05-04",
+    "effectiveDate": "2026-05-05",
+    "pb95": 6.49,
+    "pb98": 6.99,
+    "on": 7.31,
+    "source": "https://monitorpolski.gov.pl/M2026000043401.pdf",
+    "publishedAt": "2026-05-04"
+  },
+  {
     "date": "2026-04-30",
     "effectiveDate": "2026-05-01",
     "pb95": 6.46,
