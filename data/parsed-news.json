@@ -220,5 +220,11 @@
     "title": "Obwieszczenie Ministra Energii z dnia 18 maja 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
     "parsedAt": "2026-05-18T10:20:31.396Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://monitorpolski.gov.pl/M2026000049701.pdf",
+    "title": "Obwieszczenie Ministra Energii z dnia 19 maja 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
+    "parsedAt": "2026-05-19T12:15:11.618Z",
+    "hasPrices": true
   }
 ]
