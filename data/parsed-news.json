@@ -226,5 +226,29 @@
     "title": "Obwieszczenie Ministra Energii z dnia 19 maja 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
     "parsedAt": "2026-05-19T12:15:11.618Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-20-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 20 maja 2026 r.",
+    "parsedAt": "2026-05-20T08:30:03.468Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-19-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 19 maja 2026 r.",
+    "parsedAt": "2026-05-20T08:30:12.267Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-okresie-16-18-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca w okresie 16-18 maja 2026 r.",
+    "parsedAt": "2026-05-20T08:30:21.156Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-15-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 15 maja 2026 r.",
+    "parsedAt": "2026-05-20T08:30:30.021Z",
+    "hasPrices": true
   }
 ]

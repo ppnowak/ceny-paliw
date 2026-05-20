@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-05-20",
+    "effectiveDate": "2026-05-21",
+    "pb95": 6.52,
+    "pb98": 7.07,
+    "on": 7,
+    "source": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-20-maja-2026-r",
+    "publishedAt": "2026-05-20"
+  },
+  {
     "date": "2026-05-19",
     "effectiveDate": "2026-05-20",
     "pb95": 6.52,
@@ -16,6 +25,15 @@
     "on": 6.85,
     "source": "https://monitorpolski.gov.pl/M2026000049401.pdf",
     "publishedAt": "2026-05-18"
+  },
+  {
+    "date": "2026-05-15",
+    "effectiveDate": "2026-05-17",
+    "pb95": 6.37,
+    "pb98": 6.93,
+    "on": 6.82,
+    "source": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-okresie-16-18-maja-2026-r",
+    "publishedAt": "2026-05-15"
   },
   {
     "date": "2026-05-15",
