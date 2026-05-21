@@ -250,5 +250,11 @@
     "title": "Maksymalna cena detaliczna paliw obowiązująca 15 maja 2026 r.",
     "parsedAt": "2026-05-20T08:30:30.021Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://monitorpolski.gov.pl/M2026000050201.pdf",
+    "title": "Obwieszczenie Ministra Energii z dnia 20 maja 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
+    "parsedAt": "2026-05-21T04:16:31.448Z",
+    "hasPrices": true
   }
 ]
