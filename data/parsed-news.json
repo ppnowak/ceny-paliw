@@ -304,5 +304,53 @@
     "title": "Obwieszczenie Ministra Energii z dnia 1 czerwca 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
     "parsedAt": "2026-06-01T10:53:09.503Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-3-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 3 czerwca 2026 r.",
+    "parsedAt": "2026-06-02T11:37:34.615Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-2-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 2 czerwca 2026 r.",
+    "parsedAt": "2026-06-02T11:37:42.808Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-okresie-30-maja--1-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca w okresie 30 maja - 1 czerwca 2026 r.",
+    "parsedAt": "2026-06-02T11:37:51.105Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-29-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 29 maja 2026 r.",
+    "parsedAt": "2026-06-02T11:37:59.350Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-28-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 28 maja 2026 r.",
+    "parsedAt": "2026-06-02T11:38:07.604Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-27-maja-2026-r2",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 27 maja 2026 r.",
+    "parsedAt": "2026-06-02T11:38:15.953Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-26-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 26 maja 2026 r.",
+    "parsedAt": "2026-06-02T11:38:24.156Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-okresie-23-25-maja-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca w okresie 23-25 maja 2026 r.",
+    "parsedAt": "2026-06-02T11:38:32.344Z",
+    "hasPrices": true
   }
 ]
