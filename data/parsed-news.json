@@ -370,5 +370,17 @@
     "title": "Obwieszczenie Ministra Energii z dnia 5 czerwca 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
     "parsedAt": "2026-06-05T11:13:57.447Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-dniach-6-8-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca w dniach 6-8 czerwca 2026 r.",
+    "parsedAt": "2026-06-07T20:33:57.915Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-dniach-4-5-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca w dniach 4-5 czerwca 2026 r.",
+    "parsedAt": "2026-06-07T20:34:05.903Z",
+    "hasPrices": true
   }
 ]
