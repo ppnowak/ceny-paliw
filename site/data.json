@@ -1,6 +1,13 @@
 {
-  "lastUpdated": "2026-06-11T09:40:30.716Z",
+  "lastUpdated": "2026-06-11T11:39:44.973Z",
   "prices": [
+    {
+      "effectiveDate": "2026-06-12",
+      "pb95": 5.98,
+      "pb98": 6.55,
+      "on": 6.37,
+      "source": "https://monitorpolski.gov.pl/M2026000058901.pdf"
+    },
     {
       "effectiveDate": "2026-06-11",
       "pb95": 5.92,
