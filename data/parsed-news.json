@@ -479,5 +479,17 @@
     "title": "Obwieszczenie Ministra Energii z dnia 29 czerwca 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
     "parsedAt": "2026-06-29T10:42:34.054Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-30-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 30 czerwca 2026 r.",
+    "parsedAt": "2026-07-03T22:08:57.172Z",
+    "hasPrices": true
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-okresie-27-29-czerwca-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca w okresie 27-29 czerwca 2026 r.",
+    "parsedAt": "2026-07-03T22:09:05.233Z",
+    "hasPrices": true
   }
 ]

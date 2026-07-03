@@ -1,6 +1,13 @@
 {
-  "lastUpdated": "2026-07-03T20:17:53.615Z",
+  "lastUpdated": "2026-07-03T22:09:05.242Z",
   "prices": [
+    {
+      "effectiveDate": "2026-07-01",
+      "pb95": 6,
+      "pb98": 6.68,
+      "on": 6.19,
+      "source": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-30-czerwca-2026-r"
+    },
     {
       "effectiveDate": "2026-06-30",
       "pb95": 6.21,
