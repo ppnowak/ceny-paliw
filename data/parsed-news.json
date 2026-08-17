@@ -505,5 +505,12 @@
     "parsedAt": "2026-08-17T10:51:36.518Z",
     "hasPrices": false,
     "error": "fetch failed"
+  },
+  {
+    "url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-18-sierpnia-2026-r",
+    "title": "Maksymalna cena detaliczna paliw obowiązująca 18 sierpnia 2026 r.",
+    "parsedAt": "2026-08-17T16:48:22.627Z",
+    "hasPrices": false,
+    "error": "fetch failed"
   }
 ]
