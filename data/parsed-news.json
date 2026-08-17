@@ -498,5 +498,12 @@
     "parsedAt": "2026-08-14T12:03:54.067Z",
     "hasPrices": false,
     "error": "fetch failed"
+  },
+  {
+    "url": "https://monitorpolski.gov.pl/M2026000079901.pdf",
+    "title": "Obwieszczenie Ministra Energii z dnia 17 sierpnia 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
+    "parsedAt": "2026-08-17T10:51:36.518Z",
+    "hasPrices": false,
+    "error": "fetch failed"
   }
 ]
