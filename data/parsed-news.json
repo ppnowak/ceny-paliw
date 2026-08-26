@@ -552,5 +552,12 @@
     "title": "Obwieszczenie Ministra Energii z dnia 25 sierpnia 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
     "parsedAt": "2026-08-25T10:37:46.194Z",
     "hasPrices": true
+  },
+  {
+    "url": "https://monitorpolski.gov.pl/M2026000087301.pdf",
+    "title": "Obwieszczenie Ministra Energii z dnia 26 sierpnia 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
+    "parsedAt": "2026-08-26T10:39:28.347Z",
+    "hasPrices": false,
+    "error": "NVidia API error: 410 - {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.2-3b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is no longer available.\"}\n"
   }
 ]
