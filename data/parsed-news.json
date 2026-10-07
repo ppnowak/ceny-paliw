@@ -594,5 +594,12 @@
     "parsedAt": "2026-10-06T16:40:39.708Z",
     "hasPrices": false,
     "error": "NVidia API error: 410 - {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.2-3b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is no longer available.\"}\n"
+  },
+  {
+    "url": "https://monitorpolski.gov.pl/M2026000097801.pdf",
+    "title": "Obwieszczenie Ministra Energii z dnia 7 października 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
+    "parsedAt": "2026-10-07T16:15:10.789Z",
+    "hasPrices": false,
+    "error": "NVidia API error: 410 - {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.2-3b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is no longer available.\"}\n"
   }
 ]
