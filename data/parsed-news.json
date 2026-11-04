@@ -734,5 +734,12 @@
     "parsedAt": "2026-11-03T10:39:19.575Z",
     "hasPrices": false,
     "error": "Failed to fetch PDF https://monitorpolski.gov.pl/M2026000107201.pdf: 404"
+  },
+  {
+    "url": "https://monitorpolski.gov.pl/M2026000108301.pdf",
+    "title": "Obwieszczenie Ministra Energii z dnia 4 listopada 2026 r. w sprawie maksymalnej ceny paliw ciekłych na stacji paliw",
+    "parsedAt": "2026-11-04T14:07:44.444Z",
+    "hasPrices": false,
+    "error": "NVidia API error: 410 - {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.2-3b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is no longer available.\"}\n"
   }
 ]
